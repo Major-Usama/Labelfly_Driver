@@ -33,7 +33,7 @@ export default function NotificationScreen({ navigation }) {
         <View style={styles.pushNotificationsontainer}>
           <View style={{ marginTop: RFValue(30) }}>
             <View style={styles.individualListIte}>
-              <Text style={styles.listText}>Delivery Sent</Text>
+              <Text style={styles.listText}>Task Started</Text>
               <Switch
                 value={pasuseall}
                 trackColor={{ false: "#EEEEEE", true: "#0C4DA2" }}
@@ -45,7 +45,7 @@ export default function NotificationScreen({ navigation }) {
 
           <View style={{ marginTop: 37 }}>
             <View style={styles.individualListIte}>
-              <Text style={styles.listText}>Delivery Arrived</Text>
+              <Text style={styles.listText}>Task Completed</Text>
               <Switch
                 useNativeDriver={true}
                 value={product}
@@ -84,7 +84,7 @@ export default function NotificationScreen({ navigation }) {
 
           <View style={{ marginTop: 37 }}>
             <View style={styles.individualListIte}>
-              <Text style={styles.listText}>Promo & Discount</Text>
+              <Text style={styles.listText}>Withdraws Successful</Text>
               <Switch
                 useNativeDriver={true}
                 value={feedback}
@@ -97,7 +97,7 @@ export default function NotificationScreen({ navigation }) {
 
           <View style={{ marginTop: 37 }}>
             <View style={styles.individualListIte}>
-              <Text style={styles.listText}>Payments</Text>
+              <Text style={styles.listText}>App Updated</Text>
               <Switch
                 useNativeDriver={true}
                 value={subscription}
@@ -108,18 +108,6 @@ export default function NotificationScreen({ navigation }) {
             </View>
           </View>
 
-          <View style={{ marginTop: 37 }}>
-            <View style={styles.individualListIte}>
-              <Text style={styles.listText}>App Updates</Text>
-              <Switch
-                useNativeDriver={true}
-                value={conatacts}
-                trackColor={{ false: "#EEEEEE", true: "#0C4DA2" }}
-                thumbColor={conatacts ? "#fff" : "#fff"}
-                onValueChange={(value) => setConatacts(value)}
-              />
-            </View>
-          </View>
         </View>
       </ScrollView>
     </View>

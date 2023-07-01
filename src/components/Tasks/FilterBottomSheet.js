@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   Animated,
   PanResponder,
@@ -10,17 +10,59 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
+import FilterSelectableButtons from "../FilterSelectableButtons";
 
 const { width } = Dimensions.get("window");
 const WINDOW_HEIGHT = Dimensions.get("window").height;
-const BOTTOM_SHEET_MAX_HEIGHT = WINDOW_HEIGHT * 0.65;
-const BOTTOM_SHEET_MIN_HEIGHT = WINDOW_HEIGHT * 0.64;
+const BOTTOM_SHEET_MAX_HEIGHT = WINDOW_HEIGHT * 0.73;
+const BOTTOM_SHEET_MIN_HEIGHT = WINDOW_HEIGHT * 0.72;
 const MAX_UPWARD_TRANSLATE_Y = 0;
-const MAX_DOWNWARD_TRANSLATE_Y = BOTTOM_SHEET_MAX_HEIGHT - BOTTOM_SHEET_MIN_HEIGHT; // positive number
+const MAX_DOWNWARD_TRANSLATE_Y =
+  BOTTOM_SHEET_MAX_HEIGHT - BOTTOM_SHEET_MIN_HEIGHT; // positive number
 const DRAG_THRESHOLD = 50;
 
-const FilterBottomSheet = ({ onClose }) => {
-  const animatedValue = useRef(new Animated.Value(MAX_DOWNWARD_TRANSLATE_Y)).current;
+const FilterBottomSheet = (props) => {
+  const [selectedButtonStatus, setSelectedButtonStatus] = useState("all");
+  const handleButtonPressStatus = (value) => {
+    setSelectedButtonStatus(value);
+  };
+
+  const [selectedButtonDate, setSelectedButtonDate] = useState("all");
+  const handleButtonPressDate = (value) => {
+    setSelectedButtonDate(value);
+  };
+
+  const [selectedButtonType, setSelectedButtonType] = useState("delivery");
+  const handleButtonPressType = (value) => {
+    setSelectedButtonType(value);
+  };
+
+  const buttons = [
+    { value: "all", label: "All" },
+    { value: "completed", label: "Completed" },
+    { value: "active", label: "Active" },
+    { value: "canceled", label: "Canceled" },
+  ];
+  const buttonsDate = [
+    { value: "all", label: "All" },
+    { value: "this week", label: "This week" },
+    { value: "this month", label: "This month" },
+    { value: "this year", label: "This year" },
+  ];
+  const buttonsType = [
+    { value: "pick up", label: "Pick-up" },
+    { value: "delivery", label: "Delivery" },
+  ];
+
+  const onPressReset = () => {
+    setSelectedButtonStatus("all");
+    setSelectedButtonDate("all");
+    setSelectedButtonType("pick up");
+  };
+
+  const animatedValue = useRef(
+    new Animated.Value(MAX_DOWNWARD_TRANSLATE_Y)
+  ).current;
   const lastGestureDy = useRef(0);
   const panResponder = useRef(
     PanResponder.create({
@@ -82,7 +124,49 @@ const FilterBottomSheet = ({ onClose }) => {
       </View>
 
       <View>
-        <Text>Sort & Filter</Text>
+        <Text style={styles.sortFilterText}>Sort & Filter</Text>
+
+        <View style={styles.seprator} />
+      </View>
+
+      <View>
+        <Text style={styles.statusText}>Status</Text>
+        <FilterSelectableButtons
+          buttons={buttons}
+          selectedButton={selectedButtonStatus}
+          handleButtonPress={handleButtonPressStatus}
+        />
+      </View>
+
+      <View>
+        <Text style={styles.statusText}>Date</Text>
+        <FilterSelectableButtons
+          buttons={buttonsDate}
+          selectedButton={selectedButtonDate}
+          handleButtonPress={handleButtonPressDate}
+        />
+      </View>
+
+      <View>
+        <Text style={styles.statusText}>Type</Text>
+        <FilterSelectableButtons
+          buttons={buttonsType}
+          selectedButton={selectedButtonType}
+          handleButtonPress={handleButtonPressType}
+        />
+      </View>
+      <View style={styles.seprator} />
+      <View style={styles.btnContainer}>
+        <TouchableOpacity
+          onPress={onPressReset}
+          style={{ ...styles.footerButton, backgroundColor: "#E7E7E7" }}
+        >
+          <Text style={{ ...styles.btnText, color: "#35383F" }}>Reset</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={props.onClose} style={styles.footerButton}>
+          <Text style={styles.btnText}>Apply</Text>
+        </TouchableOpacity>
       </View>
     </Animated.View>
   );
@@ -112,7 +196,7 @@ const styles = StyleSheet.create({
   },
   draggableArea: {
     width: "100%",
-    height: 54,
+    height: 40,
     alignSelf: "center",
     alignItems: "center",
   },
@@ -132,6 +216,48 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     color: "#FF0000",
+  },
+  sortFilterText: {
+    color: "#212121",
+    fontFamily: "Bold",
+    fontSize: RFValue(21),
+    textAlign: "center",
+  },
+  seprator: {
+    width: Dimensions.get("window").width - 48,
+    height: 1,
+    backgroundColor: "#EEEEEE",
+    marginTop: 24,
+    alignSelf: "center",
+  },
+  statusText: {
+    color: "#212121",
+    fontFamily: "Bold",
+    fontSize: RFValue(16),
+    marginLeft: 24,
+    marginTop: 24,
+  },
+  btnContainer: {
+    backgroundColor: "#fff",
+    width: width,
+    justifyContent: "space-evenly",
+    flexDirection: "row",
+    marginTop: 40,
+  },
+  footerButton: {
+    width: width / 2.3,
+    height: RFValue(50),
+    borderRadius: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#0C4DA2",
+    paddingHorizontal: 16,
+  },
+  btnText: {
+    fontSize: RFValue(14),
+    fontFamily: "Bold",
+    color: "#fff",
   },
 });
 

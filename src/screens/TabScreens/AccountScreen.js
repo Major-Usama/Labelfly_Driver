@@ -44,7 +44,14 @@ export default function AccountScreen({ navigation }) {
           </TouchableOpacity>
 
           <Text style={styles.fullNameText}>Full Name</Text>
-          <Text style={styles.profileNumber}>+215454856131</Text>
+          <View style={styles.driverRatingsContainer}>
+        <Image 
+        style={styles.halfStar}
+        source={require('../../assets/icons/Profile/halfstar.png')}
+        />
+
+        <Text style={styles.ratingsText}>4.8 (86 reviews)</Text>
+          </View>
         </View>
 
         <View style={styles.seprator} />
@@ -56,15 +63,14 @@ export default function AccountScreen({ navigation }) {
             onPress={() => navigation.navigate("AccountDetailScreen")}
           />
           <ProfileItem
-            icon={require("../../assets/icons/Profile/addressbook.png")}
-            title="Address Book"
-            onPress={() => navigation.navigate("AddressBookScreen")}
+            icon={require("../../assets/icons/Profile/vehicleinfoIcon.png")}
+            title="Vehicle Information"
+            onPress={() => navigation.navigate("VehicleInformationScreen")}
           />
-
           <ProfileItem
-            icon={require("../../assets/icons/Profile/paymentmethods.png")}
-            title="Payment Methods"
-            onPress={() => navigation.navigate("PaymentMethodProfileScreen")}
+            icon={require("../../assets/icons/Profile/documents.png")}
+            title="My Documents"
+            onPress={() => navigation.navigate("MyDocumentsScreen")}
           />
 
           <ProfileItem
@@ -161,4 +167,25 @@ const styles = StyleSheet.create({
   profileItemMainContainer: {
     marginTop: RFValue(22),
   },
+  halfStar:
+  {
+    width:20,
+    height:20,
+    resizeMode:"contain",
+    marginRight:10,
+  },
+  driverRatingsContainer:
+  {
+    flexDirection:"row",
+    alignItems:'center',
+    alignSelf:'center',
+    marginTop:8,
+
+  },
+  ratingsText:
+  {
+    color:'#424242',
+    fontFamily:'Medium',
+    fontSize:RFValue(12),
+  }
 });

@@ -76,7 +76,7 @@ const TasksScreen = () => {
       </ScrollView>
 
       <BottomSheetModal visible={bottomSheetVisible} onClose={closeBottomSheet}>
-        <FilterBottomSheet />
+        <FilterBottomSheet onClose={closeBottomSheet} />
       </BottomSheetModal>
     </View>
   );

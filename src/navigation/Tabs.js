@@ -3,9 +3,9 @@ import { Dimensions, Text, Image, View, StyleSheet } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/TabScreens/HomeScreen";
-import ActivityScreen from "../screens/TabScreens/ActivityScreen";
 import AccountScreen from "../screens/TabScreens/AccountScreen";
 import TasksScreen from "../screens/TabScreens/TasksScreen";
+import EarningScreen from "../screens/TabScreens/EarningScreen";
 
 const WIDTH = Dimensions.get("window").width;
 const Tab = createBottomTabNavigator();
@@ -118,7 +118,7 @@ export default function Tabs() {
                   <Text style={{ ...styles.label }}> Tasks</Text>
                 </View>
               );
-          } else if (route.name === "activity") {
+          } else if (route.name === "earnings") {
             if (focused) {
               return (
                 <View>
@@ -203,7 +203,7 @@ export default function Tabs() {
     >
       <Tab.Screen name="home" component={HomeScreen} />
       <Tab.Screen name="tasks" component={TasksScreen} />
-      <Tab.Screen name="activity" component={ActivityScreen} />
+      <Tab.Screen name="earnings" component={EarningScreen} />
       <Tab.Screen name="account" component={AccountScreen} />
     </Tab.Navigator>
   );
