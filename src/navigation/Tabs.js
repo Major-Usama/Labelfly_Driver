@@ -3,9 +3,9 @@ import { Dimensions, Text, Image, View, StyleSheet } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/TabScreens/HomeScreen";
-import ServicesScreen from "../screens/TabScreens/ServicesScreen";
 import ActivityScreen from "../screens/TabScreens/ActivityScreen";
 import AccountScreen from "../screens/TabScreens/AccountScreen";
+import TasksScreen from "../screens/TabScreens/TasksScreen";
 
 const WIDTH = Dimensions.get("window").width;
 const Tab = createBottomTabNavigator();
@@ -80,7 +80,7 @@ export default function Tabs() {
                   <Text style={{ ...styles.label }}>Home</Text>
                 </View>
               );
-          } else if (route.name === "service") {
+          } else if (route.name === "tasks") {
             if (focused) {
               return (
                 <View>
@@ -91,7 +91,7 @@ export default function Tabs() {
                       tintColor: "#0C4DA2",
                       alignSelf: "center",
                     }}
-                    source={require("../assets/icons/TabIcons/services.png")}
+                    source={require("../assets/icons/TabIcons/task.png")}
                   />
                   <Text
                     style={{
@@ -100,7 +100,7 @@ export default function Tabs() {
                       fontFamily: "Bold",
                     }}
                   >
-                    Services
+                    Tasks
                   </Text>
                 </View>
               );
@@ -113,9 +113,9 @@ export default function Tabs() {
                       height: 24,
                       alignSelf: "center",
                     }}
-                    source={require("../assets/icons/TabIcons/services.png")}
+                    source={require("../assets/icons/TabIcons/task.png")}
                   />
-                  <Text style={{ ...styles.label }}>Services</Text>
+                  <Text style={{ ...styles.label }}> Tasks</Text>
                 </View>
               );
           } else if (route.name === "activity") {
@@ -129,7 +129,7 @@ export default function Tabs() {
                       tintColor: "#0C4DA2",
                       alignSelf: "center",
                     }}
-                    source={require("../assets/icons/TabIcons/activity.png")}
+                    source={require("../assets/icons/TabIcons/earnings.png")}
                   />
                   <Text
                     style={{
@@ -138,7 +138,7 @@ export default function Tabs() {
                       fontFamily: "Bold",
                     }}
                   >
-                    Activity
+                    Earnings
                   </Text>
                 </View>
               );
@@ -151,9 +151,9 @@ export default function Tabs() {
                       height: 24,
                       alignSelf: "center",
                     }}
-                    source={require("../assets/icons/TabIcons/activity.png")}
+                    source={require("../assets/icons/TabIcons/earnings.png")}
                   />
-                  <Text style={{ ...styles.label }}>Activity</Text>
+                  <Text style={{ ...styles.label }}>Earnings</Text>
                 </View>
               );
           } else if (route.name === "account") {
@@ -177,7 +177,7 @@ export default function Tabs() {
                       fontFamily: "Bold",
                     }}
                   >
-                    Account
+                    profile
                   </Text>
                 </View>
               );
@@ -192,7 +192,7 @@ export default function Tabs() {
                     }}
                     source={require("../assets/icons/TabIcons/account.png")}
                   />
-                  <Text style={{ ...styles.label }}>Account</Text>
+                  <Text style={{ ...styles.label }}>profile</Text>
                 </View>
               );
           }
@@ -202,7 +202,7 @@ export default function Tabs() {
       })}
     >
       <Tab.Screen name="home" component={HomeScreen} />
-      <Tab.Screen name="service" component={ServicesScreen} />
+      <Tab.Screen name="tasks" component={TasksScreen} />
       <Tab.Screen name="activity" component={ActivityScreen} />
       <Tab.Screen name="account" component={AccountScreen} />
     </Tab.Navigator>

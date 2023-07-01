@@ -161,7 +161,7 @@ export default function RegisterUploadSelfieScreen({ navigation }) {
             </TouchableOpacity>
 
             <TouchableOpacity
-            //  onPress={openModal}
+              onPress={openModal}
               activeOpacity={0.8}>
               <Image
                 style={styles.nextButton}

@@ -77,7 +77,9 @@ export default function LoginScreen({ navigation }) {
           </View>
 
           <View style={styles.loginButtonContainer}>
-            <Button onPress={() => navigation.navigate('tabs')} title="Log In" />
+            <Button 
+            onPress={() => navigation.navigate('tabs')}
+             title="Log In" />
           </View>
 
           <TouchableOpacity
